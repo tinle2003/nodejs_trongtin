@@ -1,0 +1,94 @@
+        </div>
+        <!-- END wrapper -->
+        <!-- jQuery  -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/modernizr.min.js"></script>
+        <script src="/assets/js/detect.js"></script>
+        <script src="/assets/js/fastclick.js"></script>
+        <script src="/assets/js/jquery.slimscroll.js"></script>
+        <script src="/assets/js/jquery.blockUI.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/jquery.nicescroll.js"></script>
+        <script src="/assets/js/jquery.scrollTo.min.js"></script>
+
+        <script src="/assets/plugins/skycons/skycons.min.js"></script>
+        <script src="/assets/plugins/raphael/raphael-min.js"></script>
+        <script src="/assets/plugins/morris/morris.min.js"></script>
+        
+        <script src="/assets/pages/dashborad.js"></script>
+
+        <!-- App js -->
+        <script src="/assets/js/app.js"></script>
+        <script>
+        if (typeof Skycons !== 'undefined'){
+            var icons = new Skycons(
+                {"color": "#fff"},
+                {"resizeClear": true}
+                ),
+                    list  = [
+                        "clear-day", "clear-night", "partly-cloudy-day",
+                        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                        "fog"
+                    ],
+                    i;
+
+                for(i = list.length; i--; )
+                icons.set(list[i], list[i]);
+                icons.play();
+            };
+        $(document).ready(function() {
+            var socket = io.connect("http://localhost");
+            socket.on("connect",function(){
+                socket.emit("read",true);
+                socket.emit("weather",true);
+            });
+            //listen
+            socket.on("data",function(data) {
+                console.log(data);
+            });
+
+            socket.on("weather",function(data) {
+                console.log(data);
+            });
+
+        });
+        </script>
+		        <!-- jQuery  -->
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/modernizr.min.js"></script>
+        <script src="/assets/js/detect.js"></script>
+        <script src="/assets/js/fastclick.js"></script>
+        <script src="/assets/js/jquery.slimscroll.js"></script>
+        <script src="/assets/js/jquery.blockUI.js"></script>
+        <script src="/assets/js/waves.js"></script>
+        <script src="/assets/js/jquery.nicescroll.js"></script>
+        <script src="/assets/js/jquery.scrollTo.min.js"></script>
+
+        <!--Morris Chart-->
+        <script src="/assets/plugins/morris/morris.min.js"></script>
+        <script src="/assets/plugins/raphael/raphael-min.js"></script>
+        <script src="/assets/pages/morris.init.js"></script>
+        <script src="/assets/plugins/timepicker/moment.js"></script>
+        <script src="/assets/plugins/timepicker/tempusdominus-bootstrap-4.js"></script>
+        <script src="/assets/plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
+        <script src="/assets/plugins/clockpicker/jquery-clockpicker.min.js"></script>
+        <script>
+        $('#single-input').clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            autoclose: true,
+            'default': 'now'
+        });
+        $('.clockpicker').clockpicker({
+            donetext: 'Done',
+            }).find('input').change(function() {
+            console.log(this.value);
+        });
+        </script>
+    </body>
+</html>
